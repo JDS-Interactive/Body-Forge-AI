@@ -1,0 +1,9 @@
+Body Forge AI Prototype License
+
+Copyright (c) 2026 Jared De Santis. All rights reserved.
+
+Permission is granted to read and study this code for personal evaluation and learning.
+
+You may not copy, modify, redistribute, publish, sell, sublicense, or use this code in another project without express written permission from Jared De Santis.
+
+This prototype is provided “as is,” without warranty of any kind. It is not medical advice, diagnosis, or treatment. Use responsibly and follow the guidance of qualified health professionals.

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>Body Forge AI</title>
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Local AI Fitness Coach</p>
+      <h1>Body Forge AI</h1>
+      <p class="tagline">Strength, shaped one rep at a time.</p>
+    </div>
+    <button id="installBtn" class="ghost hidden" type="button">Install</button>
+  </header>
+
+  <main>
+    <section class="hero panel">
+      <div>
+        <h2>Today’s Forge</h2>
+        <p id="todayPlan">Week 1 target: 10 pushups. Add planks and treadmill work as tolerated.</p>
+      </div>
+      <div class="stats-grid">
+        <div><strong id="weekNumber">1</strong><span>Week</span></div>
+        <div><strong id="pushupTarget">10</strong><span>Pushup target</span></div>
+        <div><strong id="streak">0</strong><span>Day streak</span></div>
+      </div>
+    </section>
+
+    <section class="panel controls">
+      <h2>Choose Mode</h2>
+      <div class="mode-grid">
+        <button class="mode active" data-mode="pushup" type="button">
+          <span>Pushup Coach</span>
+          <small>Rep counter + encouragement</small>
+        </button>
+        <button class="mode" data-mode="plank" type="button">
+          <span>Plank Coach</span>
+          <small>Timer + form reminders</small>
+        </button>
+        <button class="mode" data-mode="treadmill" type="button">
+          <span>Treadmill Coach</span>
+          <small>Cardio intervals + voice support</small>
+        </button>
+      </div>
+
+      <div class="control-row">
+        <button id="startBtn" type="button">Start Session</button>
+        <button id="stopBtn" class="secondary" type="button" disabled>Stop</button>
+        <button id="resetBtn" class="ghost" type="button">Reset Today</button>
+      </div>
+
+      <label class="toggle">
+        <input id="cameraToggle" type="checkbox" checked />
+        <span>Use camera pose tracking when available</span>
+      </label>
+
+      <label class="toggle">
+        <input id="voiceToggle" type="checkbox" checked />
+        <span>Enable voice prompts</span>
+      </label>
+
+      <label class="toggle">
+        <input id="webllmToggle" type="checkbox" />
+        <span>Try WebLLM local AI coach</span>
+      </label>
+      <p class="note">WebLLM requires a WebGPU-capable browser and may download a large local model on first use. The app works without it using built-in coaching prompts.</p>
+    </section>
+
+    <section class="coach-layout">
+      <section class="panel camera-panel">
+        <div class="video-wrap">
+          <video id="video" playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="cameraStatus" class="status-pill">Camera idle</div>
+        </div>
+      </section>
+
+      <section class="panel session-panel">
+        <h2 id="modeTitle">Pushup Coach</h2>
+        <div class="metric">
+          <strong id="primaryMetric">0</strong>
+          <span id="primaryLabel">reps</span>
+        </div>
+        <div class="metric small">
+          <strong id="timerMetric">00:00</strong>
+          <span>session time</span>
+        </div>
+        <p id="coachMessage" class="coach-message">Choose a mode and press Start Session. I’ll coach you through the work.</p>
+
+        <div class="manual-row">
+          <button id="manualRepBtn" type="button">+ Manual Rep</button>
+          <button id="completeBtn" class="secondary" type="button">Mark Complete</button>
+        </div>
+
+        <label for="userNote">Say or type how you feel:</label>
+        <div class="chat-row">
+          <input id="userNote" placeholder="Example: I'm struggling at rep 8..." />
+          <button id="sendNoteBtn" type="button">Coach Me</button>
+          <button id="listenBtn" class="ghost" type="button">🎙</button>
+        </div>
+
+        <div id="llmStatus" class="llm-status">Local AI: not loaded</div>
+      </section>
+    </section>
+
+    <section class="panel history">
+      <div class="section-head">
+        <h2>Progress</h2>
+        <button id="clearHistoryBtn" class="ghost danger" type="button">Clear History</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Body Forge AI is a motivational fitness tool, not medical advice. Follow your clinician’s guidance and stop if you feel pain, dizziness, chest discomfort, or unusual shortness of breath.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
